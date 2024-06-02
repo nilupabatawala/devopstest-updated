@@ -25,6 +25,6 @@ fast-service       NodePort    172.20.234.248   <none>        8000:30872/TCP    
 kubernetes         ClusterIP   172.20.0.1       <none>        443/TCP                          6h32m
 rabbitmq-service   NodePort    172.20.119.88    <none>        5672:30402/TCP,15672:31812/TCP   86m
 
-To complete the task I need to create a front end application to invoke fast-api published method implemented and also need to create consumer method to retrieve the message from the queue and print in a log file.
+
 
 
