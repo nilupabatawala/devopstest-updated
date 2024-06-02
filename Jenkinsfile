@@ -23,8 +23,7 @@ pipeline {
                     sh """
                         ${SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectName=fastapi \
-                        -Dsonar.projectKey=fastapi \
-                        -Dsonar.sources=.
+                        -Dsonar.projectKey=fastapi
                     """
                 }
                 }
