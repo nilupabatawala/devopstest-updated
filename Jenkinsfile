@@ -20,11 +20,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('Sonar-server') {
                    script {
-                    sh """
-                        ${SCANNER_HOME}/bin/sonar-scanner \
-                        -Dsonar.projectName=fastapi \
-                        -Dsonar.projectKey=fastapi
-                    """
+                    sh "${SCANNER_HOME}/bin/sonar-scanner"
                 }
                 }
             }
