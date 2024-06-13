@@ -37,7 +37,6 @@ pipeline {
             steps {
                script {
                   echo "docker build"
-                  docker build -t fat-api-app .
                 }
             }
         }
