@@ -25,10 +25,19 @@ pipeline {
                 }
             }
         }
-           stage('Quality Gates') {
+        stage('Quality Gates') {
             steps {
                script {
                   waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                }
+            }
+        }
+
+         stage('Docker build & Push Images') {
+            steps {
+               script {
+                  echo "docker build"
+                  docker build -t fat-api-app .
                 }
             }
         }
