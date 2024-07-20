@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     // environment variables
-     environment {
+    environment {
         DOCKER_CREDENTIALS_ID = 'nilupab'
         DOCKER_REGISTRY = 'your-docker-registry-url'
         IMAGE_NAME = 'rabbitmqapp'
@@ -16,31 +16,8 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/nilupabatawala/devopstest-updated'
             }
         }
-        // stage('File system scan') {
-        //     steps {
-        //         sh 'touch .trivyignore'
-        //         sh 'echo "node_modules >> .trivyignore "'
-        //         sh 'trivy fs --format table -o trivy-fs-report.html .'
-        //     }
-        // }
-        // stage('Static Code Analysis') {
-        //     steps {
-        //         withSonarQubeEnv('Sonar-server') {
-        //            script {
-        //             sh "${SCANNER_HOME}/bin/sonar-scanner"
-        //         }
-        //         }
-        //     }
-        // }
-        // stage('Quality Gates') {
-        //     steps {
-        //        script {
-        //           echo "QUality gate"
-        //         }
-        //     }
-        // }
-
-         stage('Docker build') {
+    
+        stage('Docker build') {
             steps {
                script {
                   echo "docker build"
@@ -54,7 +31,10 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:$IMAGE_TAG'
+                
+                }
+            }
         }
       }
-    }
-  }
+
+}
