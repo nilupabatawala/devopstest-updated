@@ -26,27 +26,22 @@ pipeline {
         }
 
          stage('Docker Push') {  
-            environment {
-                DOCKER_IMAGE = $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:${BUILD_NUMBER}
-                // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
-                REGISTRY_CREDENTIALS = credentials('dockerHub')
-                }
-            steps {
+             steps {
                 // withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                 //     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                 //     sh 'docker push $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:${BUILD_NUMBER}'
                 
                 // }
-              script {
+            script {
+                DOCKER_IMAGE = "$DOCKER_CREDENTIALS_ID/$IMAGE_NAME:${BUILD_NUMBER}"
                 def dockerImage = docker.image("${DOCKER_IMAGE}")
                 docker.withRegistry('https://index.docker.io/v1/', "dockerHub") {
                 dockerImage.push()
-            
                 }
+             }
 
-
-                }
-        }
+             }
+         }
 
          stage('Update Yaml Manifests file') {  
             environment {
