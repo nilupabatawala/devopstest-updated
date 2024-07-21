@@ -8,6 +8,9 @@ app = FastAPI()
 user= os.environ.get("user")
 password=os.environ.get("password")
 
+print("user", user)
+print("password", password)
+
 credentials= pika.PlainCredentials(user,password)
 
 #publish message to the queue
