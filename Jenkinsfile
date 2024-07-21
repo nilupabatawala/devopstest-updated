@@ -46,10 +46,8 @@ pipeline {
                     git config user.email "nilupa14@gmail.com"
                     git config user.name "Nilupa Batawala"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    pwd
                     CURRENT_VERSION=`grep image manifests/fastapi-app.yaml | awk -F ":" '{ print $3 }'`
-                    echo $CURRENT_VERSION
-                    sed -i "s/$CURRENT_VERSION/${BUILD_NUMBER}/g" manifests/fastapi-app.yml
+                    sed -i "s/$CURRENT_VERSION/${BUILD_NUMBER}/g" manifests/fastapi-app.yaml
                     git add manifests/fastapi-app.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
