@@ -47,7 +47,7 @@ pipeline {
                     git config user.name "Nilupa Batawala"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     pwd
-                    CURRENT_VERSION=`grep image manifests/fastapi-app.yml | awk -F ":" '{ print $3 }'`
+                    CURRENT_VERSION=`grep image manifests/fastapi-app.yaml | awk -F ":" '{ print $3 }'`
                     echo $CURRENT_VERSION
                     sed -i "s/$CURRENT_VERSION/${BUILD_NUMBER}/g" manifests/fastapi-app.yml
                     git add manifests/fastapi-app.yml
