@@ -6,7 +6,6 @@ pipeline {
         DOCKER_CREDENTIALS_ID = 'nilupab'
         DOCKER_REGISTRY = 'your-docker-registry-url'
         IMAGE_NAME = 'rabbitmqapp'
-        IMAGE_TAG = ${BUILD_NUMBER}
         //SCANNER_HOME= tool 'sonar-scanner'
     }
 
@@ -21,7 +20,7 @@ pipeline {
             steps {
                script {
                   echo "docker build"
-                  sh 'docker build -t $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:$IMAGE_TAG .'
+                  sh 'docker build -t $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:${BUILD_NUMBER} .'
                 }
             }
         }
@@ -30,7 +29,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                    sh 'docker push $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:$IMAGE_TAG'
+                    sh 'docker push $DOCKER_CREDENTIALS_ID/$IMAGE_NAME:${BUILD_NUMBER}'
                 
                 }
             }
