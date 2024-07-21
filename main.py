@@ -1,17 +1,10 @@
 from fastapi import FastAPI
 import pika
 from fastapi.responses import HTMLResponse
-import os
 
 app = FastAPI()
 
-user= os.environ.get("user")
-password=os.environ.get("password")
-
-print("user", user)
-print("password", password)
-
-credentials= pika.PlainCredentials(user,password)
+credentials= pika.PlainCredentials('guest','guest')
 
 #publish message to the queue
 @app.post("/publish")
