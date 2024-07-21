@@ -48,7 +48,7 @@ pipeline {
                     BUILD_NUMBER=${BUILD_NUMBER}
                     CURRENT_VERSION=`grep image manifests/fastapi-app.yaml | awk -F ":" '{ print $3 }'`
                     sed -i "s/$CURRENT_VERSION/${BUILD_NUMBER}/g" manifests/fastapi-app.yaml
-                    git add manifests/fastapi-app.yml
+                    git add manifests/fastapi-app.yaml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
