@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fast
-        image: nilupab/rabbitmqapp:14
+        image: nilupab/rabbitmqapp:15
         ports:
         - containerPort: 8000
 
