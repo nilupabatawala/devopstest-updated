@@ -35,6 +35,29 @@ pipeline {
                 }
             }
         }
+
+         stage('Update Yaml Manifests file') {  
+            environment {
+            GIT_REPO_NAME = "devopstest-updated"
+            GIT_USER_NAME = "nilupabatawala"
+            }
+            steps {
+                 withCredentials([string(credentialsId: 'git', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+                    git config user.email "nilupa14@gmail.com"
+                    git config user.name "Nilupa Batawala"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    CURRENT_VERSION=grep image fastapi-app.yaml | awk -F ":" '{ print $3 }
+                    sed -i "s/$CURRENT_VERSION/${BUILD_NUMBER}/g" manifests/fastapi-app.yml
+                    git add manifests/fastapi-app.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+                
+                }
+            }
+        }
+
       }
 
 }

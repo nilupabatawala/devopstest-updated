@@ -2,9 +2,6 @@ from fastapi import FastAPI
 import pika
 from fastapi.responses import HTMLResponse
 
-
-
-
 app = FastAPI()
 
 credentials= pika.PlainCredentials('guest','guest')
@@ -20,9 +17,7 @@ def publish_message(message: str ):
     channel.basic_publish(exchange='', routing_key='testqueue',
                       body=message)
     
-
     return {"Published sucessfully to the queue": message}
-
 
 
 def get_rabbitmq_channel():
@@ -44,8 +39,7 @@ def consume_message():
     else:
         print("No message in queue")
         return {"message": "No message available"}
-    
-    
+     
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
     with open("index.html", 'r') as f:
