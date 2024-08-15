@@ -17,11 +17,11 @@ pipeline {
     }
 
     stages {
-        stage('Git checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
-            }
-        }
+        stage('Cloning Git') {
+          steps {
+            git 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
+      }
+    }
     
         stage('Docker build') {
             steps {
@@ -58,8 +58,6 @@ pipeline {
             steps {
                  withCredentials([string(credentialsId: 'git', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    apk update
-                    apk add git
                     cd $WORKSPACE;ls -l
                     git config user.email "nilupa14@gmail.com"
                     git config user.name "Nilupa Batawala"
