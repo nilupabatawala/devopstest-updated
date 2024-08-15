@@ -1,6 +1,6 @@
 pipeline {
     agent {
-         docker {  image 'docker:latest'
+         docker {  image 'docker:dind'
                    label 'jenkins-agent'
                    args '--user 1000:1000 -v /my/jenkins/workdir:/var/lib/docker'
             }
