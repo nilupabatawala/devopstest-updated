@@ -6,13 +6,13 @@ pipeline {
             }
     }
     
-    
     // environment variables
     environment {
         DOCKER_CREDENTIALS_ID = 'nilupab'
         DOCKER_REGISTRY = 'your-docker-registry-url'
         IMAGE_NAME = 'rabbitmqapp'
         //SCANNER_HOME= tool 'sonar-scanner'
+        HOME = "${env.WORKSPACE}"
     }
 
     stages {
