@@ -3,7 +3,7 @@ pipeline {
          docker {  image 'docker:dind'
                    label 'jenkins-agent'
                    args '--user 1000:1000 -v /my/jenkins/workdir:/var/lib/docker'
-                   args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+                   args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
             }
     }
     
