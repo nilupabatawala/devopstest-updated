@@ -52,7 +52,7 @@ pipeline {
 
          stage('Update Yaml Manifests file') {  
             environment {
-            GIT_REPO_NAME = "devopstest-updated"
+            GIT_REPO_NAME = "fastapi-rabbitmq-app"
             GIT_USER_NAME = "nilupabatawala"
             }
             steps {
