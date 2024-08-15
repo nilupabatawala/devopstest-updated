@@ -60,7 +60,7 @@ pipeline {
                 sh '''
                     apk update
                     apk add git
-                    cd $WORKSPACE
+                    cd $WORKSPACE;ls -l
                     git config user.email "nilupa14@gmail.com"
                     git config user.name "Nilupa Batawala"
                     BUILD_NUMBER=${BUILD_NUMBER}
