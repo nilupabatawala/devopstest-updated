@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/nilupabatawala/devopstest-updated'
+                git branch: 'main', url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app'
             }
         }
     
