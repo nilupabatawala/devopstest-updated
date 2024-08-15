@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+         docker {  image 'docker:dind'
+            label 'jenkins-agent' }
+    }
+    
     
     // environment variables
     environment {
