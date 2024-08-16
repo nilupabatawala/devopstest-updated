@@ -17,11 +17,11 @@ pipeline {
     }
 
     stages {
-         stage ('Checkout Code') {
-            steps {
-             git branch: 'main', url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
-            }
-         }
+        stage('Cloning Git') {
+      steps {
+        git 'https://github.com/nilupabatawala/fastapi-rabbitmq-app' 
+      }
+    }
          stage('Docker build') {
             steps {
                script {
