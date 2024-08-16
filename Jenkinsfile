@@ -59,7 +59,7 @@ pipeline {
                  withCredentials([string(credentialsId: 'git', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     cd $WORKSPACE;git init
-                    cd $WORKSPACE;git config user.email "nilupa14@gmail.com"
+                    cd $WORKSPACE;pwd;git config user.email "nilupa14@gmail.com"
                     cd $WORKSPACE;git config user.name "Nilupa Batawala"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     CURRENT_VERSION=`grep image manifests/fastapi-app.yaml | awk -F ":" '{ print $3 }'`
