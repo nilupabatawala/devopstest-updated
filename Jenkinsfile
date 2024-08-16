@@ -17,10 +17,12 @@ pipeline {
     }
 
     stages {
-       stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/nilupabatawala/terrform-ci-cd.git'
-            }
+      stage('Checkout'){
+           steps {
+                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
+                url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app',
+                branch: 'main'
+           }
         }
          stage('Docker build') {
             steps {
