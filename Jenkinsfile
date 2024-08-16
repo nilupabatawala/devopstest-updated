@@ -17,14 +17,7 @@ pipeline {
     }
 
     stages {
-      stage('Checkout'){
-           steps {
-                git credentialsId: 'git', 
-                url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app',
-                branch: 'main'
-           }
-        }
-         stage('Docker build') {
+          stage('Docker build') {
             steps {
                script {
                   echo "docker build"
