@@ -19,7 +19,7 @@ pipeline {
     stages {
         stage('Cloning Git') {
       steps {
-        git 'https://github.com/nilupabatawala/fastapi-rabbitmq-app' 
+        git 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
       }
     }
          stage('Docker build') {
