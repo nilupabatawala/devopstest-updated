@@ -17,13 +17,12 @@ pipeline {
     }
 
     stages {
-         stage ('test') {
+         stage ('Checkout Code') {
             steps {
-             sh 'docker --version'
-             sh 'git --version'
+             git branch: 'main', url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
             }
          }
-                stage('Docker build') {
+         stage('Docker build') {
             steps {
                script {
                   echo "docker build"
