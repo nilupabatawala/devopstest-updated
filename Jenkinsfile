@@ -20,6 +20,7 @@ pipeline {
          stage ('test') {
 
              sh 'docker --version'
+         }
 
       }
 
