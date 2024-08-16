@@ -17,11 +17,11 @@ pipeline {
     }
 
     stages {
-        stage('Cloning Git') {
-      steps {
-        git 'https://github.com/nilupabatawala/fastapi-rabbitmq-app.git'
-      }
-    }
+       stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/nilupabatawala/terrform-ci-cd.git'
+            }
+        }
          stage('Docker build') {
             steps {
                script {
