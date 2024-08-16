@@ -19,7 +19,7 @@ pipeline {
     stages {
       stage('Checkout'){
            steps {
-                git credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', 
+                git credentialsId: 'git', 
                 url: 'https://github.com/nilupabatawala/fastapi-rabbitmq-app',
                 branch: 'main'
            }
